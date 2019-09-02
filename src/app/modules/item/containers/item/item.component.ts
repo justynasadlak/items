@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Item } from '../../../../models/item';
 import { ItemDataService } from '../../../../services/item-data.service';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-item',
@@ -18,8 +19,16 @@ export class ItemComponent implements OnInit {
   }
 
   onAddItem(item: Item): void {
-    console.log(item);
-    this.itemDataService.addItem(item).subscribe();
+    item = { ...item, name: item.name.trim() };
+    this.itemDataService
+      .addItem(item)
+      .pipe()
+      .subscribe(
+        data => {
+          console.log(data);
+        },
+        error => console.log(error)
+      );
   }
 
   private getItemList(): void {
