@@ -1,1 +1,15 @@
-<p>add-item works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Add item</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="addItemForm">
+      <mat-form-field>
+        <input matInput placeholder="Item name" formControlName="itemName" />
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+  </mat-card-actions>
+</mat-card>
