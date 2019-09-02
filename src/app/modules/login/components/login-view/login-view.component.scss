@@ -1,6 +1,11 @@
 mat-card {
   display: flex;
   flex-direction: column;
+  padding: 50px;
+}
+
+mat-card-header {
+  justify-content: center;
 }
 
 .login-view__form {
