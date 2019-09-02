@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../../../../services/user-data.service';
+import { LoginData } from '../../../../models/login-data';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +12,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  onLogin(userData): void {
-    console.log(userData);
-    this.userDataService.loginUser(userData).subscribe(res => localStorage.setItem('token', res));
+  onLogin(loginData: LoginData): void {
+    console.log(loginData);
+    this.userDataService.loginUser(loginData).subscribe(
+      res => {
+        localStorage.setItem('token', res);
+      },
+      error => console.log(error)
+    );
   }
 }
