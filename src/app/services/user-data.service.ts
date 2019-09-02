@@ -16,4 +16,8 @@ export class UserDataService {
       .post(this.url + 'api/authenticate', loginData, { observe: 'response' })
       .pipe(switchMap(res => of(res.headers.get('authorization'))));
   }
+
+  isAuthenticated(): Observable<boolean> {
+    return of(!!localStorage.getItem('token'));
+  }
 }
