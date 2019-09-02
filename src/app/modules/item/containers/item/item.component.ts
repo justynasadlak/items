@@ -25,7 +25,7 @@ export class ItemComponent implements OnInit {
       .pipe()
       .subscribe(
         data => {
-          console.log(data);
+          this.getItemList();
         },
         error => console.log(error)
       );
