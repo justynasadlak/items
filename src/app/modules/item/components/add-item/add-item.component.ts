@@ -20,6 +20,7 @@ export class AddItemComponent implements OnInit {
 
   onAddItem(): void {
     this.addItem.emit(this.addItemForm.value);
+    this.addItemForm.reset();
   }
 
   private initForm(): void {
