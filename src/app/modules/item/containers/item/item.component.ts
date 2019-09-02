@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Item } from '../../../../models/item';
+import { ItemDataService } from '../../../../services/item-data.service';
 
 @Component({
   selector: 'app-item',
@@ -6,7 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./item.component.scss']
 })
 export class ItemComponent implements OnInit {
-  constructor() {}
+  itemsS: Observable<Item[]>;
 
-  ngOnInit() {}
+  constructor(private itemDataService: ItemDataService) {}
+
+  ngOnInit(): void {
+    this.getItemList();
+  }
+
+  private getItemList(): void {
+    this.itemsS = this.itemDataService.getAllItems();
+  }
 }
