@@ -8,7 +8,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const headers = {
-      Authorization: `${localStorage.getItem('token')}`
+      Authorization: localStorage.getItem('token')
     };
     return next.handle(localStorage.getItem('token') ? req.clone({ setHeaders: headers }) : req);
   }
