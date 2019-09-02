@@ -6,9 +6,10 @@ import { AddItemComponent } from './components/add-item/add-item.component';
 import { ItemRoutingModule } from './item-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
-  declarations: [ItemComponent, ItemListComponent, AddItemComponent],
+  declarations: [ItemComponent, ItemListComponent, AddItemComponent, HeaderComponent],
   imports: [CommonModule, SharedModule, ReactiveFormsModule, ItemRoutingModule],
   exports: [ItemComponent]
 })
