@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { LoginData } from '../models/login-data';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserDataService {
   private url = 'http://frontend-recruitment.one2tribe.pl:8080/';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   loginUser(loginData: LoginData): Observable<string> {
     return this.http
@@ -19,5 +20,10 @@ export class UserDataService {
 
   isAuthenticated(): Observable<boolean> {
     return of(!!localStorage.getItem('token'));
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    this.router.navigate(['login']);
   }
 }

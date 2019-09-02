@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Item } from '../../../../models/item';
 import { ItemDataService } from '../../../../services/item-data.service';
-import { catchError } from 'rxjs/operators';
+import { UserDataService } from '../../../../services/user-data.service';
 
 @Component({
   selector: 'app-item',
@@ -12,7 +12,7 @@ import { catchError } from 'rxjs/operators';
 export class ItemComponent implements OnInit {
   itemsS: Observable<Item[]>;
 
-  constructor(private itemDataService: ItemDataService) {}
+  constructor(private itemDataService: ItemDataService, private userDataService: UserDataService) {}
 
   ngOnInit(): void {
     this.getItemList();
@@ -29,6 +29,10 @@ export class ItemComponent implements OnInit {
         },
         error => console.log(error)
       );
+  }
+
+  onLogout(): void {
+    this.userDataService.logout();
   }
 
   private getItemList(): void {
