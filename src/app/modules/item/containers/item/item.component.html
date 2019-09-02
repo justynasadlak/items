@@ -1,2 +1,4 @@
-<app-add-item (addItem)="onAddItem($event)"></app-add-item>
-<app-item-list [items]="itemsS | async"></app-item-list>
+<div class="item__content">
+  <app-add-item (addItem)="onAddItem($event)"></app-add-item>
+  <app-item-list [items]="itemsS | async"></app-item-list>
+</div>
