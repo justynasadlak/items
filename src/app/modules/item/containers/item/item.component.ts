@@ -17,7 +17,13 @@ export class ItemComponent implements OnInit {
     this.getItemList();
   }
 
+  onAddItem(item: Item): void {
+    console.log(item);
+    this.itemDataService.addItem(item).subscribe();
+  }
+
   private getItemList(): void {
-    this.itemsS = this.itemDataService.getAllItems();
+    this.itemDataService.getAllItems();
+    this.itemsS = this.itemDataService.items$;
   }
 }

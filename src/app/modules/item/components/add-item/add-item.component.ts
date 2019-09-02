@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-item',
@@ -9,15 +9,22 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class AddItemComponent implements OnInit {
   addItemForm: FormGroup;
 
+  @Output()
+  addItem: EventEmitter<string> = new EventEmitter<string>();
+
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.initForm();
   }
 
+  onAddItem(): void {
+    this.addItem.emit(this.addItemForm.value);
+  }
+
   private initForm(): void {
     this.addItemForm = this.formBuilder.group({
-      itemName: ['']
+      name: ['', [Validators.required]]
     });
   }
 }

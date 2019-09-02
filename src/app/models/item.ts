@@ -1,4 +1,4 @@
 export class Item {
-  id: string;
+  id?: string;
   name: string;
 }
