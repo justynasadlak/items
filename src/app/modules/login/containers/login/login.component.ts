@@ -12,7 +12,6 @@ export class LoginComponent {
   constructor(private userDataService: UserDataService, private router: Router) {}
 
   onLogin(loginData: LoginData): void {
-    console.log(loginData);
     this.userDataService.loginUser(loginData).subscribe(
       res => {
         this.router.navigate(['items']);
